@@ -2,6 +2,8 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  //var time9AM = $("#time9AM");
+  $("#time9AM").val(localStorage.getItem("9AM"));
   // TODO: Add code to display the current date in the header of the page.
   var now = dayjs().format("dddd, MMMM D YYYY");
   console.log(now);
@@ -18,18 +20,20 @@ $(function () {
 
   $(".saveBtn").on("click", function() {
     var hour = $(this).siblings(".hour").text();
-    console.log(hour);
+    //console.log(hour);
     localStorage.setItem($(this).siblings(".hour").text(), $(this).siblings(".description").val());
-    console.log(localStorage.getItem("9AM"))
+    //console.log(localStorage.getItem("9AM"));
   });
 
+
+  
 function changeTime(){
     let currentHour = dayjs().hour();
     console.log(currentHour);
     $(".time-block").each(function (){
-      console.log($(this));
-      console.log($(this).attr("id").split("-")[1]);
-      let Time = parseInt($(this).attr("id").split("-")[1]);
+      //console.log($(this));
+      //console.log($(this).attr("id").split("-")[1]);
+      let Time = parseInt($(this).attr("data-time"));
       console.log(Time);
 
       if (Time < currentHour){
@@ -48,9 +52,10 @@ changeTime();
 
 
 
+
   //
   // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. 
+  // block by comparing the id to the current hour. No local storage needed.
   
   // HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -59,8 +64,9 @@ changeTime();
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
+  // attribute of each time-block be used to do this? 
+  // Make the data come back into the <div>S!!!
+  // Make new id for each <textarea>
   
 });
 console.log("All systems a go");
